@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-around;
 
+  &.positioned-left {
+    flex-direction: column;
+  }
+
   &.positioned-right {
     flex-direction: column;
   }

@@ -23,7 +23,7 @@ export class AppComponent {
 
   stepperOptions: IStepperOptions = {
     custom: false,
-    position: 'right'
+    position: 'left'
   };
 
   constructor(private wizardService: FormWizardService) {}

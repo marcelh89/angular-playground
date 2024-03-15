@@ -14,7 +14,7 @@ export interface IWizardControls {
   [key: string]: FormControl | FormGroup | FormArray;
 }
 
-export type StepperPosition = 'top' | 'right';
+export type StepperPosition = 'left' | 'top' | 'right';
 
 export interface IStepperOptions {
   custom: boolean;

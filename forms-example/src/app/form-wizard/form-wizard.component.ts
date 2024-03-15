@@ -31,6 +31,7 @@ export class FormWizardComponent implements OnInit, OnDestroy {
   @ViewChild(FormWizardStepDirective, { static: true }) wizardStep!: FormWizardStepDirective;
 
   @HostBinding('class.stepper-positioned-right') stepperRight = false;
+  @HostBinding('class.stepper-positioned-left') stepperLeft = false;
 
   noOfSteps: number = 0;
   activeStep: number = 0;
@@ -103,7 +104,8 @@ export class FormWizardComponent implements OnInit, OnDestroy {
 
       if (this.stepperOptions) {
         this.stepperRight = this.stepperOptions?.position === 'right';
-        this.stepperClass = this.stepperRight ? 'positioned-right' : '';
+        this.stepperLeft = this.stepperOptions?.position === 'left';
+        this.stepperClass = this.stepperRight ? 'positioned-right' : this.stepperLeft ? 'positioned-left' : '';
         this.useCustomStepper = !!this.stepperOptions?.custom;
       }
     }
