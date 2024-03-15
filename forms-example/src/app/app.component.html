@@ -1,0 +1,22 @@
+<ngx-form-wizard
+  [steps]="steps"
+  [stepperOptions]="stepperOptions"
+  (finished)="onFinish()"
+  (cancelled)="onCancel()">
+  <ng-container [ngTemplateOutlet]="customStepper" [ngTemplateOutletContext]="{steps}"></ng-container>
+</ngx-form-wizard>
+
+
+<ng-template #customStepper let-steps="steps">
+  <div class="stepper positioned-right">
+    <div>Custom Stepper</div>
+    <div class="step" *ngFor="let step of steps">
+      <div>{{ step.title }}</div>
+      <div *ngFor="let field of getObjectKeys(step.data)">
+        <span>{{ field }}</span>
+        :
+        <span>{{ step.data[field] }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

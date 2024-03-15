@@ -1,0 +1,59 @@
+<ng-container>
+  <ng-container *ngIf="useCustomStepper; else stepperDefault">
+    <ng-content></ng-content>
+  </ng-container>
+
+  <div class="wizard">
+    <div class="wizard-step">
+      <div class="wizard-step-title">
+        {{ activeStepInfo.title }}
+      </div>
+      <div class="wizard-step-description">
+        {{ activeStepInfo.description }}
+      </div>
+      <div class="wizard-step-container">
+        <ng-template formWizardStep></ng-template>
+      </div>
+    </div>
+    <div class="wizard-action">
+      <button
+        *ngIf="!isFirstStep"
+        class="wizard-action-btn prev-btn"
+        (click)="goToPrevStep()">
+        {{ prevActionBtnLabel }}
+      </button>
+      <button
+        *ngIf="!isLastStep"
+        class="wizard-action-btn next-btn"
+        [disabled]="!activeStepInfo.dataValidated"
+        (click)="goToNextStep()">
+        {{ nextActionBtnLabel }}
+      </button>
+      <button
+        *ngIf="isLastStep"
+        class="wizard-action-btn finish-btn"
+        (click)="finishWizard()">
+        {{ finishActionBtnLabel }}
+      </button>
+      <button
+        class="wizard-action-btn cancel-btn"
+        (click)="cancelWizard()">
+        {{ cancelActionBtnLabel }}
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #stepperDefault>
+  <div class="stepper" [class]="stepperClass">
+    <div
+      class="step"
+      *ngFor="let step of steps"
+      [class.active]="step.id === activeStep"
+      [class.clickable]="step.id < activeStep"
+      (click)="handleStepperClick(step)"
+      >
+      <span>{{ step.id }}</span>. <span>{{ step.title }}</span>
+    </div>
+  </div>
+</ng-template>
