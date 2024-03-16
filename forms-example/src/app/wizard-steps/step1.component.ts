@@ -11,7 +11,7 @@ import {FormWizardService} from "../form-wizard/form-wizard.service";
         <div class="half-containers">
           <div class="form-group flex">
             <label>Salutation</label>
-            <select formControlName="title">
+            <select formControlName="salutation">
               <option>Mr</option>
               <option>Mrs</option>
             </select>
@@ -26,7 +26,7 @@ import {FormWizardService} from "../form-wizard/form-wizard.service";
           </div>
           <div class="form-group flex">
             <label>Birthdate</label>
-            <input type="date"/>
+            <input type="date" formControlName="birthdate"/>
           </div>
         </div>
         <div class="half-containers">
@@ -96,7 +96,11 @@ export class Step1Component extends FormWizardStepBaseComponent {
 
   constructor(private wizardService: FormWizardService) {
     const formcontrols = {
-      'name':  new FormControl('', [ Validators.required ])
+      'name':  new FormControl('', [ Validators.required ]),
+      'salutation':  new FormControl('', [ Validators.required ]),
+      'prename':  new FormControl('', [ Validators.required ]),
+      'birthdate':  new FormControl('', [ Validators.required ]),
+
     };
     super(1, wizardService.getSteps(), true, formcontrols);
   }
