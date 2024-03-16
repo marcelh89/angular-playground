@@ -81,6 +81,10 @@
   display: flex;
 }
 
+.flexcol {
+  flex-direction: column;
+}
+
 .half-containers {
   flex: 1;
   margin-right:100px

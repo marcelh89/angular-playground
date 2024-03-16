@@ -7,6 +7,7 @@ import {FormWizardService} from "../form-wizard/form-wizard.service";
   selector: 'step1',
   template: `
     <form [formGroup]="form">
+      <h5 class="flexcol">Personal</h5>
       <div class="flex">
         <div class="half-containers">
           <div class="form-group flex">
@@ -48,9 +49,9 @@ import {FormWizardService} from "../form-wizard/form-wizard.service";
 
       </div>
 
-
       <hr/>
 
+      <h5 class="flexcol">Address</h5>
       <div class="flex">
         <div class="half-containers">
           <div class="form-group flex">
