@@ -13,15 +13,3 @@ export interface IWizardStep {
 export interface IWizardControls {
   [key: string]: FormControl | FormGroup | FormArray;
 }
-
-export type StepperPosition = 'left' | 'top' | 'right';
-
-export interface IStepperOptions {
-  custom: boolean;
-  position: StepperPosition;
-}
-
-export const STEPPER_DEFAULTS: IStepperOptions = {
-  custom: false,
-  position: 'right'
-} as const;

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild, HostBinding, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { FormWizardStepDirective } from './form-wizard-step.directive';
-import { IStepperOptions, IWizardStep, STEPPER_DEFAULTS } from './form-wizard.model';
+import { IWizardStep } from './form-wizard.model';
 import { FormWizardService } from './form-wizard.service';
 import { Subscription } from 'rxjs';
 import { FormWizardStepBaseComponent } from './form-wizard-step-base.component';
@@ -18,7 +18,6 @@ import { FormWizardStepBaseComponent } from './form-wizard-step-base.component';
 export class FormWizardComponent implements OnInit, OnDestroy {
 
   @Input() steps: IWizardStep[] = [];
-  @Input() stepperOptions: IStepperOptions = STEPPER_DEFAULTS;
 
   @Input() prevActionBtnLabel: string = 'Previous';
   @Input() nextActionBtnLabel: string = 'Next';
@@ -30,19 +29,12 @@ export class FormWizardComponent implements OnInit, OnDestroy {
 
   @ViewChild(FormWizardStepDirective, { static: true }) wizardStep!: FormWizardStepDirective;
 
-  @HostBinding('class.stepper-positioned-right') stepperRight = false;
-  @HostBinding('class.stepper-positioned-left') stepperLeft = false;
-
   noOfSteps: number = 0;
   activeStep: number = 0;
   isLastStep: boolean = false;
   isFirstStep: boolean = true;
   activeStepInfo: IWizardStep = <IWizardStep>{};
   componentChangesSub: Subscription | undefined;
-
-  // Stepper variables
-  stepperClass: string = '';
-  useCustomStepper: boolean = false;
 
   constructor(private wizardService: FormWizardService) {}
 
@@ -101,13 +93,6 @@ export class FormWizardComponent implements OnInit, OnDestroy {
       this.isFirstStep = true;
       this.isLastStep = false;
       this.loadWizardStep();
-
-      if (this.stepperOptions) {
-        this.stepperRight = this.stepperOptions?.position === 'right';
-        this.stepperLeft = this.stepperOptions?.position === 'left';
-        this.stepperClass = this.stepperRight ? 'positioned-right' : this.stepperLeft ? 'positioned-left' : '';
-        this.useCustomStepper = !!this.stepperOptions?.custom;
-      }
     }
   }
 

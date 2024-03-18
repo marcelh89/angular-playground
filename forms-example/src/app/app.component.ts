@@ -3,7 +3,7 @@ import { Step1Component } from './wizard-steps/step1.component';
 import { Step2Component } from './wizard-steps/step2.component';
 import { Step3Component } from './wizard-steps/step3.component';
 import { Step4Component } from './wizard-steps/step4.component';
-import {IStepperOptions, IWizardStep} from "./form-wizard/form-wizard.model";
+import {IWizardStep} from "./form-wizard/form-wizard.model";
 import {FormWizardService} from "./form-wizard/form-wizard.service";
 
 @Component({
@@ -20,11 +20,6 @@ export class AppComponent {
     { id: 3, title: 'Work Experience', description: 'Work Description', data: null, component: Step3Component },
     { id: 4, title: 'Review', description: 'Review Description', data: null, component: Step4Component }
   ];
-
-  stepperOptions: IStepperOptions = {
-    custom: false,
-    position: 'left'
-  };
 
   constructor(private wizardService: FormWizardService) {}
 

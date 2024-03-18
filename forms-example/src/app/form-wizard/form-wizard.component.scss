@@ -1,19 +1,11 @@
 .ngx-form-wizard {
   display: flex;
-  flex-direction: column;
   gap: 20px;
-
-  &.stepper-positioned-left {
-    flex-direction: row;
-  }
-
-  &.stepper-positioned-right {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
+  flex-direction: row;
 
   .stepper {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     border: 1px solid;
 
