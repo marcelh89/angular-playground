@@ -8,7 +8,6 @@ import { FormWizardStepBaseComponent } from './form-wizard-step-base.component';
 @Component({
   selector: 'ngx-form-wizard',
   templateUrl: './form-wizard.component.html',
-  styleUrls: ['./form-wizard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
