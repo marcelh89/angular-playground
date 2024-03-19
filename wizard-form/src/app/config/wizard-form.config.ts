@@ -10,7 +10,8 @@ export default {
           {
             "title": "Partner",
             "columns": [
-              {
+              { 
+                "id": 1,
                 "fields": [
                   {
                     "type": "select",
@@ -44,6 +45,7 @@ export default {
                 ]
               },
               {
+                "id": 2,
                 "fields": [
                   {
                     "type": "select",
@@ -83,6 +85,7 @@ export default {
             "title": "Anschrift",
             "columns": [
               {
+                "id": 1,
                 "fields": [
                   {
                     "type": "text",
@@ -101,6 +104,7 @@ export default {
                 ]
               },
               {
+                "id": 2,
                 "fields": [
                   {
                     "type": "number",
@@ -117,6 +121,7 @@ export default {
             "title": "Tätigkeit",
             "columns": [
               {
+                "id": 1,
                 "fields": [
                   {
                     "type": "select",
@@ -129,8 +134,10 @@ export default {
                 ]
               },
               {
+                "id": 2,
                 "fields": [
                   {
+                    
                     "type": "select",
                     "options": ["Versicherungen","IT-Services"],
                     "name": "business",

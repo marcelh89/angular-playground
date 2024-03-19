@@ -19,6 +19,7 @@ export interface FormConfig {
   }
   
   export interface ColumnConfig {
+    id: number
     fields: FieldConfig[];
   }
   

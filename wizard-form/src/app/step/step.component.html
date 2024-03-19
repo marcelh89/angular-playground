@@ -1,5 +1,28 @@
-<div *ngIf="isActive">
+<div *ngIf="isActive && step?.rows">
     <h2>{{ step?.title }}</h2>
+
+
+
     <!-- Row und Columns Struktur hier aufbauen -->
-    <app-dynamic-input  *ngFor="let field of step.fields" [field]="field"></app-dynamic-input>
+
+    @for (row of step?.rows; track row.title) {
+    <li>{{ row.title }}</li>
+
+        @for(col of row?.columns; track col.id) {
+            <li>{{ col.id }}</li>
+
+            @for(field of col?.fields; track field.name) {
+                <app-dynamic-input [field]="field"></app-dynamic-input>
+            }
+
+        }
+
+    } @empty {
+    <li>There are no items.</li>
+    }
+
+
+    <!--
+        <app-dynamic-input  *ngFor="let field of step.fields" [field]="field"></app-dynamic-input>
+    -->
   </div>
