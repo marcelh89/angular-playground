@@ -89,33 +89,17 @@ export const AppStore = signalStore(
 
       isRequired(field: FieldConfig): boolean {
 
-        return false;
-
-        /*
         let matchedControl: FormControl | undefined = undefined;
 
-        store.stepForms().forEach(formGroup => {
-          // find field
+        for(let formGroup of store.stepForms()){
           if(formGroup.controls[field.name])
             matchedControl = (formGroup.controls[field.name] as FormControl);
-        })
-
-        console.log("isReqired-matchedControl", matchedControl)
-
-
-        if (!matchedControl) {
-          return false;
+            if(matchedControl?.hasValidator(Validators.required))
+              return true
         }
 
-        const validator = matchedControl.validator ? matchedControl.validator({} as AbstractControl) : null;
-
-        console.log("isReqired-result", validator && validator["required"])
-        return validator && validator["required"];
-        */
-
+        return false;
       }
-      
-      
 
     }))
       
