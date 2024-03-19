@@ -1,0 +1,9 @@
+.step-headlines li {
+    cursor: pointer;
+    padding: 0.5em;
+}
+  
+.step-headlines li.active {
+    background-color: #007bff;
+    color: white;
+}
