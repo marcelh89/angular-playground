@@ -1,1 +1,17 @@
-<p>sidebar works!</p>
+<ul>
+<li *ngFor="let step of appStore.config.steps();  index as i">
+
+@if(appStore.currentStepIndex() === i) {
+    <b>{{step.title}}</b>
+} @else {
+    {{step.title}}
+}
+
+</li>
+
+</ul>
+
+
+<ng-template #loggedOut>
+    Please friend, login.
+  </ng-template>
