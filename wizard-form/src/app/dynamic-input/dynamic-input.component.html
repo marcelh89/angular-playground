@@ -9,30 +9,30 @@
         @case("text"){
             <input
                 [formControlName]="field!.name"
-                [id]="field?.name"
-                [type]="field?.type"
-                [placeholder]="field?.placeholder"
+                [id]="field!.name"
+                [type]="field!.type"
+                [placeholder]="field!.placeholder"
             />
         }
         @case("number"){
             <input
                 [formControlName]="field.name"
-                [id]="field?.name"
-                [type]="field?.type"
-                [placeholder]="field?.placeholder"
+                [id]="field!.name"
+                [type]="field!.type"
+                [placeholder]="field!.placeholder"
             />
         }
         @case("date"){
             <input
                 [formControlName]="field.name"
-                [id]="field?.name"
-                [type]="field?.type"
-                [placeholder]="field?.placeholder"
+                [id]="field!.name"
+                [type]="field!.type"
+                [placeholder]="field!.placeholder"
             />
         }
         @case("select"){
-            <select [formControlName]="field.name" [id]="field?.name">
-                <option value="" disabled>{{ field?.placeholder }}</option>
+            <select [formControlName]="field.name" [id]="field!.name">
+                <option value="" disabled>{{ field!.placeholder }}</option>
                 <ng-container *ngFor="let option of field?.options">
                   <option [value]="option">{{ option }}</option>
                 </ng-container>
