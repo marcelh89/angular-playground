@@ -1,4 +1,13 @@
-<div class="form-step" *ngFor="let step of config.steps; let i = index">
-    <app-step [formGroup]="formGroup" [step]="step" [isActive]="i === currentStep"></app-step>
+
+<form [formGroup]="stepForms[currentStepIndex]">
+  <div class="form-step" *ngFor="let step of config.steps; let i = index">
+      <app-step [formGroup]="formGroup()" [step]="step" [isActive]="i === currentStepIndex"></app-step>
+       
   </div>
-  <!-- Buttons und Navigation hier implementieren -->
+
+   <!-- form controls -->
+  <button type="button" (click)="goToPreviousStep()" *ngIf="currentStepIndex > 0">Previous</button>
+  <button type="button" (click)="goToNextStep()" *ngIf="currentStepIndex < stepForms.length - 1">Next</button>
+  <button type="submit" *ngIf="currentStepIndex === stepForms.length - 1" [disabled]="!isNextStepAccessible()">Submit</button>
+
+</form>

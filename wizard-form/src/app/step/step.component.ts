@@ -18,6 +18,6 @@ export class StepComponent {
   @Input() formGroup!: FormGroup;
 
   ngOnInit() {
-    console.log("app-step/ngOnInit - passed formGroup", this.formGroup)
+    console.log("app-step/ngOnInit - passed formGroup for step", this.step?.title,  this.formGroup)
   }
 }

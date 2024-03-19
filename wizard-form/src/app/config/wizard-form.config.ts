@@ -154,6 +154,31 @@ export default {
         ],
         "button.abort": "Abbrechen",
         "button.next": "OK"
+      },
+      {
+        "id": 1,
+        "title": "Weitere Infos",
+        "rows": [
+          {
+            "title": "Weitere",
+            "columns": [
+              { 
+                "id": 1,
+                "fields": [
+                  {
+                    "type": "text",
+                    "name": "furtherinfo",
+                    "label": "Weitere Infos",
+                    "placeholder": "",
+                    "validators": []
+                  },
+                ]
+              }
+            ]
+          }
+        ],
+        "button.abort": "Abbrechen",
+        "button.next": "OK"
       }
     ]
   } 

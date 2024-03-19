@@ -17,12 +17,10 @@ export class DynamicInputComponent {
   control: FormControl = new FormControl();
 
   ngOnInit(): void {
-    console.log("app-step/ngOnInit - passed formGroup", this.formGroup)
+    console.log("app-dynamic-input/ngOnInit - passed formGroup", this.formGroup)
     this.formGroup.addControl(this.field.name, this.control);
     this.setValidators();
-
   }
-
 
   private setValidators() {
     const validators = [];
