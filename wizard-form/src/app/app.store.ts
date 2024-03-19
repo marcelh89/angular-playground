@@ -33,6 +33,14 @@ function initValidators(field: FieldConfig) {
   
 }
 
+function removeNull(obj: any) {
+  Object.keys(obj).forEach(key => {
+    if (obj[key] && typeof obj[key] === 'object') removeNull(obj[key]);
+    else if (obj[key] === null) delete obj[key];
+  });
+  return obj;
+}
+
 // <------ move in utils?!
 
 const fb = new FormBuilder()
@@ -114,8 +122,20 @@ export const AppStore = signalStore(
       submitForm() {
 
         // collect all form data
-        const finalFormData = {"TODO": 123}
-        patchState(store, (state) => ({ confirmationStep: true, finalFormData }));
+        let finalFormData: any = {}
+
+        store.stepForms().forEach(step => {
+
+          for (let controlKey of Object.keys(step.controls)){
+            finalFormData[controlKey] = step.controls[controlKey].value
+          }
+          
+        })
+
+        // filter finalFormData by removing null values
+        finalFormData = removeNull(finalFormData)
+        
+        patchState(store, (state) => ({ confirmationStep: true, finalFormData}));
 
       }
 
