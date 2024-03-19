@@ -12,7 +12,7 @@
             <li>{{ col.id }}</li>
 
             @for(field of col?.fields; track field.name) {
-                <app-dynamic-input [field]="field"></app-dynamic-input>
+                <app-dynamic-input [formGroup]="formGroup" [field]="field"></app-dynamic-input>
             }
 
         }
