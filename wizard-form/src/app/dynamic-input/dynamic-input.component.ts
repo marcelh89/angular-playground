@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { NgFor, CommonModule } from '@angular/common';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { FieldConfig } from '../models/form-config.model';
+import { AppStore } from '../app.store';
 
 @Component({
   selector: 'app-dynamic-input',
@@ -12,17 +13,21 @@ import { FieldConfig } from '../models/form-config.model';
 })
 export class DynamicInputComponent {
   @Input() field!: FieldConfig;
-  @Input() formGroup!: FormGroup;
 
-  control: FormControl = new FormControl();
+  appStore = inject(AppStore)
+  //control: FormControl = null;
+
+  //@Input() formGroup!: FormGroup;
+
+  //control: FormControl = new FormControl();
 
   ngOnInit(): void {
-    console.log("app-dynamic-input/ngOnInit - passed formGroup", this.formGroup)
-    this.formGroup.addControl(this.field.name, this.control);
-    this.setValidators();
+    //console.log("app-dynamic-input/ngOnInit - passed formGroup", this.formGroup)
+    //this.formGroup.addControl(this.field.name, this.control);
+    //this.setValidators();
   }
 
-  private setValidators() {
+  /*private setValidators() {
     const validators = [];
 
     if (this.field.validators) {
@@ -41,15 +46,15 @@ export class DynamicInputComponent {
     // This example assumes you'll later want to initialize the control with a value.
     // The value could come from the configuration or could be dynamically loaded.
     //this.control.setValue(this.field.value || null);
-  }
+  }*/
 
-  isRequired(): boolean {
+  /*isRequired(): boolean {
     if (!this.control) {
       return false;
     }
     const validator = this.control.validator ? this.control.validator({} as AbstractControl) : null;
     return validator && validator["required"];
-  }
+  }*/
 
   // TODO use store here and get the error message from the config/wizard-form.config.ts
   getErrorMessage(key: string){

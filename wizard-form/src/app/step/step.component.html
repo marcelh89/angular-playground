@@ -1,9 +1,9 @@
-<div *ngIf="isActive && step?.rows">
-    <h2>{{ step?.title }}</h2>
+<div *ngIf="isActive && appStore.currentStep().rows">
+    <h2>{{ appStore.currentStep().title }}</h2>
 
     <!-- Row und Columns Struktur hier aufbauen -->
 
-    <ng-container *ngFor="let row of step?.rows; let rowIndex = index">
+    <ng-container *ngFor="let row of appStore.currentStep()?.rows; let rowIndex = index">
 
         <h4>{{row.title}}</h4>
 
@@ -11,13 +11,13 @@
             
             <div class="column" *ngFor="let col of row?.columns">
 
-                <app-dynamic-input *ngFor="let field of col.fields" [formGroup]="formGroup" [field]="field"></app-dynamic-input>
+                <app-dynamic-input *ngFor="let field of col.fields" [field]="field"></app-dynamic-input>
         
             </div>
 
         </div>
 
-        <hr *ngIf="rowIndex < step!.rows.length - 1" />
+        <hr *ngIf="rowIndex < appStore.currentStep().rows.length - 1" />
 
     </ng-container>
    

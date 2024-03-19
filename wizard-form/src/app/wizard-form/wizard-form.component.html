@@ -1,13 +1,12 @@
 
-<form [formGroup]="stepForms[currentStepIndex]">
-  <div class="form-step" *ngFor="let step of config.steps; let i = index">
-      <app-step [formGroup]="formGroup()" [step]="step" [isActive]="i === currentStepIndex"></app-step>
-       
+<form>
+  <div class="form-step" *ngFor="let step of appStore.config().steps; let i = index">
+      <app-step [isActive]="i === appStore.currentStepIndex()" />
   </div>
 
    <!-- form controls -->
-  <button type="button" (click)="goToPreviousStep()" *ngIf="currentStepIndex > 0">Previous</button>
-  <button type="button" (click)="goToNextStep()" *ngIf="currentStepIndex < stepForms.length - 1" [disabled]="!isNextStepAccessible()">Next</button>
-  <button type="submit" *ngIf="currentStepIndex === stepForms.length - 1" [disabled]="!isNextStepAccessible()">Submit</button>
+  <button type="button" (click)="appStore.goToPreviousStep()" *ngIf="appStore.currentStepIndex() > 0">Previous</button>
+  <button type="button" (click)="appStore.goToNextStep()" *ngIf="appStore.currentStepIndex() < appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Next</button>
+  <button type="submit" *ngIf="appStore.currentStepIndex() === appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Submit</button>
 
 </form>

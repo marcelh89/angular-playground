@@ -1,6 +1,6 @@
-<ng-container [formGroup]="formGroup">
+<ng-container [formGroup]="appStore.formGroup()">
     <label [attr.for]="field.name">{{ field.label }}
-        <span *ngIf="isRequired()" class="required-asterisk">*</span>
+        <span *ngIf="appStore.isRequired(field)" class="required-asterisk">*</span>
     </label>
   
 
