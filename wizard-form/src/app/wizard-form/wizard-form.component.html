@@ -7,7 +7,7 @@
 
    <!-- form controls -->
   <button type="button" (click)="goToPreviousStep()" *ngIf="currentStepIndex > 0">Previous</button>
-  <button type="button" (click)="goToNextStep()" *ngIf="currentStepIndex < stepForms.length - 1">Next</button>
+  <button type="button" (click)="goToNextStep()" *ngIf="currentStepIndex < stepForms.length - 1" [disabled]="!isNextStepAccessible()">Next</button>
   <button type="submit" *ngIf="currentStepIndex === stepForms.length - 1" [disabled]="!isNextStepAccessible()">Submit</button>
 
 </form>

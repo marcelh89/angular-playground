@@ -1,5 +1,7 @@
 <ng-container [formGroup]="formGroup">
-    <label [attr.for]="field.name">{{ field.label }}</label>
+    <label [attr.for]="field.name">{{ field.label }}
+        <span *ngIf="isRequired()" class="required-asterisk">*</span>
+    </label>
   
 
     @switch (field.type) {

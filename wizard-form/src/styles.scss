@@ -58,6 +58,10 @@
     background-color: #0056b3; /* Darken on hover */
     border-color: #0056b3;
   }
+
+  button:disabled {
+    background-color: #444444;
+  }
   
   label {
     margin-bottom: 0.5em;
@@ -104,3 +108,16 @@
       flex-basis: auto; /* On small screens, each section takes full width */
     }
   }
+
+
+  /** validation **/
+  /* Apply styles to invalid controls that have been interacted with (touched) */
+input.ng-invalid.ng-touched {
+  border-color: #dc3545; /* example: red border for invalid input */
+}
+
+/* Optionally add styles for valid controls */
+input.ng-valid.ng-touched {
+  border-color: #28a745; /* example: green border for valid input */
+  /* Optionally provide other visual feedback for valid form controls */
+}

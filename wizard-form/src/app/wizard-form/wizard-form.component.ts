@@ -43,8 +43,9 @@ export class WizardFormComponent {
   createForm(step: StepConfig ): FormGroup {
     const group = this.fb.group({});
     // Dynamically create form fields based on config
-    //for (const step of this.config.steps) {
-      for (const row of step.rows) {
+      
+    /*
+    for (const row of step.rows) {
         for (const column of row.columns) {
           for (const field of column.fields) {
             const ctl = this.fb.control('')
@@ -53,7 +54,7 @@ export class WizardFormComponent {
           }
         }
       }
-    //}
+      */
     return group;
   }
 
@@ -75,6 +76,7 @@ export class WizardFormComponent {
 
   // Check if the next step should be accessible
   isNextStepAccessible(): boolean {
+    console.log("isNextStepAccessible", this.stepForms[this.currentStepIndex].valid)
     return this.stepForms[this.currentStepIndex].valid;
   }
 
