@@ -1,0 +1,5 @@
+<div *ngIf="isActive">
+    <h2>{{ step?.title }}</h2>
+    <!-- Row und Columns Struktur hier aufbauen -->
+    <app-dynamic-input  *ngFor="let field of step.fields" [field]="field"></app-dynamic-input>
+  </div>

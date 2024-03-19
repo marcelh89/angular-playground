@@ -1,0 +1,4 @@
+<div *ngFor="let step of config.steps; let i = index">
+    <app-step [step]="step" [isActive]="i === currentStep"></app-step>
+  </div>
+  <!-- Buttons und Navigation hier implementieren -->
