@@ -41,47 +41,11 @@
         }
 
     }
-
-<!--
-    <ng-container [ngSwitch]="field.type">
-      <input
-        *ngSwitchCase="'text'"
-        [formControlName]="field!.name"
-        [id]="field?.name"
-        [type]="field?.type"
-        [placeholder]="field?.placeholder"
-      />
-      <input
-        *ngSwitchCase="'number'"
-        [formControlName]="field.name"
-        [id]="field?.name"
-        [type]="field?.type"
-        [placeholder]="field?.placeholder"
-      />
-      <input
-        *ngSwitchCase="'date'"
-        [formControlName]="field.name"
-        [id]="field?.name"
-        [type]="field?.type"
-        [placeholder]="field?.placeholder"
-      />
-      <select *ngSwitchCase="'select'" [formControlName]="field.name" [id]="field?.name">
-        <option value="" disabled>{{ field?.placeholder }}</option>
-        <ng-container *ngFor="let option of field?.options">
-          <option [value]="option">{{ option }}</option>
-        </ng-container>
-      </select>
-    </ng-container>
-
-    -->
     
     <!-- Error message -->
-    
     <!--
     <div *ngIf="control.invalid && (control.dirty || control.touched)">
       <div *ngIf="control.errors?.required">{{ getErrorMessage('error.required') }}</div>
-      
     </div>  
 -->
-  
   </ng-container>

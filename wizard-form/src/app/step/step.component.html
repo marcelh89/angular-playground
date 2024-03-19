@@ -1,28 +1,24 @@
 <div *ngIf="isActive && step?.rows">
     <h2>{{ step?.title }}</h2>
 
-
-
     <!-- Row und Columns Struktur hier aufbauen -->
 
-    @for (row of step?.rows; track row.title) {
-    <li>{{ row.title }}</li>
+    <ng-container *ngFor="let row of step?.rows; let rowIndex = index">
 
-        @for(col of row?.columns; track col.id) {
-            <li>{{ col.id }}</li>
+        <h4>{{row.title}}</h4>
 
-            @for(field of col?.fields; track field.name) {
-                <app-dynamic-input [formGroup]="formGroup" [field]="field"></app-dynamic-input>
-            }
+        <div class="row" >
+            
+            <div class="column" *ngFor="let col of row?.columns">
 
-        }
+                <app-dynamic-input *ngFor="let field of col.fields" [formGroup]="formGroup" [field]="field"></app-dynamic-input>
+        
+            </div>
 
-    } @empty {
-    <li>There are no items.</li>
-    }
+        </div>
 
+        <hr *ngIf="rowIndex < step!.rows.length - 1" />
 
-    <!--
-        <app-dynamic-input  *ngFor="let field of step.fields" [field]="field"></app-dynamic-input>
-    -->
+    </ng-container>
+   
   </div>

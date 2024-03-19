@@ -18,8 +18,8 @@ export class DynamicInputComponent {
 
   ngOnInit(): void {
     console.log("app-step/ngOnInit - passed formGroup", this.formGroup)
-    //this.formGroup.addControl(this.field.name, this.control);
-    //this.setValidators();
+    this.formGroup.addControl(this.field.name, this.control);
+    this.setValidators();
 
   }
 
@@ -43,6 +43,11 @@ export class DynamicInputComponent {
     // This example assumes you'll later want to initialize the control with a value.
     // The value could come from the configuration or could be dynamically loaded.
     //this.control.setValue(this.field.value || null);
+  }
+
+  // TODO use store here and get the error message from the config/wizard-form.config.ts
+  getErrorMessage(key: string){
+    return "error"
   }
 
 }
