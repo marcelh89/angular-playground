@@ -67,11 +67,14 @@ export const AppStore = signalStore(
     
     withComputed(({ config, currentStepIndex, stepForms }) => ({
         currentStep: computed(() => config().steps[currentStepIndex()]),
-        isNextStepAccessible: computed(() => stepForms()[currentStepIndex()].valid),
         formGroup: computed(() => stepForms()[currentStepIndex()]),
       })),
 
     withMethods((store) => ({
+      
+      isNextStepAccessible() {
+        return store.stepForms()[store.currentStepIndex()].valid
+      },
 
       goToNextStep() {
         // Check if current form is valid before proceeding
@@ -83,8 +86,6 @@ export const AppStore = signalStore(
       // Function to navigate to previous step
       goToPreviousStep() {
         patchState(store, (state) => ({ currentStepIndex: Math.max(0, store.currentStepIndex() - 1) }));
-
-
       },
 
       isRequired(field: FieldConfig): boolean {
