@@ -71,6 +71,11 @@ export const AppStore = signalStore(
       })),
 
     withMethods((store) => ({
+
+      // TODO implement with validation logic
+      selectStep(step: Number){
+        console.log("not implemented yet")
+      },
       
       isNextStepAccessible() {
         return store.stepForms()[store.currentStepIndex()].valid

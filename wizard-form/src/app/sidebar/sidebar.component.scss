@@ -1,3 +1,11 @@
+/* Since using percentages may not account for padding, you might also consider using 'flex-grow' */
+.sidebar {
+    flex-grow: 1;
+    background: #f5f5f5;
+    padding: 10px;
+  }
+
+
 .step-headlines li {
     cursor: pointer;
     padding: 0.5em;
