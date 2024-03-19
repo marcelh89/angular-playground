@@ -10,8 +10,5 @@ import {AppStore} from '../app.store'
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-
   appStore = inject(AppStore);
-
-
 }
