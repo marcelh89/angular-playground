@@ -10,6 +10,8 @@ type AppState = {
     currentStepIndex: number
     stepForms: FormGroup[],
     fb: FormBuilder
+    confirmationStep: boolean,
+    finalFormData: {"TODO": number} | undefined
 };
 
 // TODO --> move in utils?!
@@ -35,8 +37,10 @@ function initValidators(field: FieldConfig) {
 
 const fb = new FormBuilder()
 const initialState: AppState = {
+  finalFormData: undefined,
   config: formJson,
   currentStepIndex: 0,
+  confirmationStep: false,
   stepForms: formJson.steps.map(step => {
     
     const formGroup = fb.group({})
@@ -65,7 +69,7 @@ export const AppStore = signalStore(
     {providedIn: 'root'},
     withState(initialState),
     
-    withComputed(({ config, currentStepIndex, stepForms }) => ({
+    withComputed(({ config, currentStepIndex, stepForms, confirmationStep }) => ({
         currentStep: computed(() => config().steps[currentStepIndex()]),
         formGroup: computed(() => stepForms()[currentStepIndex()]),
       })),
@@ -105,6 +109,14 @@ export const AppStore = signalStore(
         }
 
         return false;
+      },
+
+      submitForm() {
+
+        // collect all form data
+        const finalFormData = {"TODO": 123}
+        patchState(store, (state) => ({ confirmationStep: true, finalFormData }));
+
       }
 
     }))
