@@ -2,9 +2,12 @@
 import { computed } from '@angular/core';
 import {signalStore, withComputed, withMethods, withState, patchState} from "@ngrx/signals"
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { FormConfig, FieldConfig } from './multistep-form.model';
 import formJson from './multistep-form.config';
 import { initValidators } from './multistep-form.utils';
+import { environment } from '../../environments/environment'; // Adjust the path as necessary
+
 
 type AppState = {
     config: FormConfig;
@@ -27,6 +30,7 @@ function removeNull(obj: any) {
 // <------ move in utils?!
 
 const fb = new FormBuilder()
+
 const initialState: AppState = {
   finalFormData: undefined,
   config: formJson,
@@ -111,23 +115,38 @@ export const AppStore = signalStore(
         return store.config().messages[key]
       },
 
-      submitForm() {
+      submitForm(http: HttpClient) {
 
-        // collect all form data
         let finalFormData: any = {}
-
-        store.stepForms().forEach(step => {
-
+        // collect all form data
+        for (let step of store.stepForms()) {
           for (let controlKey of Object.keys(step.controls)){
             finalFormData[controlKey] = step.controls[controlKey].value
           }
-          
-        })
+        }
 
-        // filter finalFormData by removing null values
-        finalFormData = removeNull(finalFormData)
-        
-        patchState(store, (state) => ({ confirmationStep: true, finalFormData}));
+        finalFormData = removeNull(finalFormData) // remove null values
+        patchState(store, (state) => ({ confirmationStep: true, finalFormData}));  // update state
+        this.sendBackendRequest(http, finalFormData); // send data to the server
+
+      },
+
+
+      sendBackendRequest(http: HttpClient, finalFormData: any) {
+        // TODO get apiUrl from env vars
+        const apiUrl = `${environment.apiUrl}/create`
+
+        // Send the data to the server
+        http.post(apiUrl, finalFormData).subscribe({
+          next: (response) => {
+            console.log('Form data successfully submitted:', response);
+            // Handle successful response here
+          },
+          error: (error) => {
+            console.error('Error submitting form data:', error);
+            // Handle errors here, for example, show user feedback
+          }
+        });
 
       }
 

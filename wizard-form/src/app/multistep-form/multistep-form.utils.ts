@@ -1,5 +1,6 @@
 import { Validators } from '@angular/forms';
 import { FieldConfig } from './multistep-form.model';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 
 export function initValidators(field: FieldConfig) {
