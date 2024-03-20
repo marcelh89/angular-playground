@@ -1,9 +1,10 @@
 
 import { computed } from '@angular/core';
 import {signalStore, withComputed, withMethods, withState, patchState} from "@ngrx/signals"
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
-import { FormConfig, FieldConfig } from './models/form-config.model';
-import formJson from './config/wizard-form.config';
+import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormConfig, FieldConfig } from './multistep-form.model';
+import formJson from './multistep-form.config';
+import { initValidators } from './multistep-form.utils';
 
 type AppState = {
     config: FormConfig;
@@ -11,27 +12,9 @@ type AppState = {
     stepForms: FormGroup[],
     fb: FormBuilder
     confirmationStep: boolean,
-    finalFormData: {"TODO": number} | undefined
+    finalFormData: {} | undefined
 };
 
-// TODO --> move in utils?!
-function initValidators(field: FieldConfig) {
-  const validators = [];
-
-  if (field.validators) {
-    for (const validator of field.validators) {
-      switch (validator) {
-        case 'required':
-          validators.push(Validators.required);
-          break;
-        // Here you can handle other validators like '>= 18 Jahre?'
-      }
-    }
-  }
-
-  return validators;
-  
-}
 
 function removeNull(obj: any) {
   Object.keys(obj).forEach(key => {

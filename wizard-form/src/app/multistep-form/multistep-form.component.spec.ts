@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WizardFormComponent } from './wizard-form.component';
+import { MultistepFormComponent } from './multistep-form.component';
 
 describe('WizardFormComponent', () => {
-  let component: WizardFormComponent;
-  let fixture: ComponentFixture<WizardFormComponent>;
+  let component: MultistepFormComponent;
+  let fixture: ComponentFixture<MultistepFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WizardFormComponent]
+      imports: [MultistepFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(WizardFormComponent);
+    fixture = TestBed.createComponent(MultistepFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

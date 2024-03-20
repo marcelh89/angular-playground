@@ -2,19 +2,19 @@ import { Component, inject} from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 //import { FormConfig, StepConfig } from '../models/form-config.model';
-import {AppStore} from '../app.store'
+import {AppStore} from './multistep-form.store'
 //import formJson from '../config/wizard-form.config';
-import {StepComponent} from '../step/step.component'
+import {StepComponent} from './step/step.component'
+import {SidebarComponent} from './sidebar/sidebar.component'
 
 
 @Component({
   selector: 'app-wizard-form',
   standalone: true,
-  imports: [CommonModule,NgIf,StepComponent, ReactiveFormsModule],
-  templateUrl: './wizard-form.component.html',
-  styleUrl: './wizard-form.component.scss'
+  imports: [CommonModule,NgIf,StepComponent, SidebarComponent, ReactiveFormsModule],
+  templateUrl: './multistep-form.component.html',
 })
-export class WizardFormComponent {
+export class MultistepFormComponent {
 
   appStore = inject(AppStore)
 

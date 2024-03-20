@@ -1,15 +1,14 @@
 import { Component, Input, inject } from '@angular/core';
-import { NgFor, CommonModule } from '@angular/common';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { FieldConfig } from '../models/form-config.model';
-import { AppStore } from '../app.store';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FieldConfig } from '../multistep-form.model';
+import { AppStore } from '../multistep-form.store';
 
 @Component({
   selector: 'app-dynamic-input',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './dynamic-input.component.html',
-  styleUrl: './dynamic-input.component.scss'
 })
 export class DynamicInputComponent {
   @Input() field!: FieldConfig;
