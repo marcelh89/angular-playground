@@ -1,6 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-.form-step {
-  margin-bottom: 2em;
+/********************************
+ ************ Global  ***********
+ ********************************/
+
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh; /* Full height of the viewport */
 }
 
 .row {
@@ -35,7 +40,87 @@
   }
 }
 
-/* Further styles to improve form appearance */
+
+/********************************
+ ******* Multistep-Form  ********
+ ********************************/
+
+
+.multistep-form-wrapper {
+  flex-basis: 66.666667%; /* 2/3 of the container width */
+  /* Optional: Add padding or additional styles as needed */
+  padding: 1em;
+  flex-grow: 2;
+}
+
+/* Since using percentages may not account for padding, you might also consider using 'flex-grow' */
+
+
+/********************************
+ ************ Step  *************
+ ********************************/
+
+.form-step {
+  margin-bottom: 2em;
+}
+
+
+/********************************
+ ***** Navigation / Sidebar *****
+ ********************************/
+
+.sidebar {
+  flex-basis: 10%; /* 1/3 of the container width */
+  /* Optional: Assign a background color to sidebar for better distinction */
+  background-color: #f7f7f7;
+  /* Optional: Add padding or additional styles as needed */
+  flex-grow: 1;
+  background: #f5f5f5;
+  padding: 10px;
+}
+
+.nav-tab {
+  display: block;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-tab:hover {
+background: #e9e9e9; /* Slightly darker grey on hover */
+}
+
+/* Active tab styles */
+.nav-tab.active {
+background: #444444; /* Active tab with blue background */
+color: #fff;
+}
+
+/* Optional: Adding a border to the active tab for better visibility */
+.nav-tab.active::after {
+content: '';
+display: block;
+border-left: 2px solid #0056b3; /* Darker blue border */
+margin-top: 5px;
+}
+
+/* Additional responsive styling if necessary */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .multistep-form-wrapper {
+    flex-basis: auto; /* On small screens, each section takes full width */
+  }
+}
+
+
+/********************************
+ ******** DynamicInput **********
+ ********************************/
 input, select {
   width: 100%;
   padding: 0.5em;
@@ -68,78 +153,10 @@ label {
 }
 
 
-.container {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh; /* Full height of the viewport */
-}
+/********************************
+ ********** Validation **********
+ ********************************/
 
-.sidebar {
-  flex-basis: 10%; /* 1/3 of the container width */
-  /* Optional: Assign a background color to sidebar for better distinction */
-  background-color: #f7f7f7;
-  /* Optional: Add padding or additional styles as needed */
-  padding: 1em;
-}
-
-.wizard-form-wrapper {
-  flex-basis: 66.666667%; /* 2/3 of the container width */
-  /* Optional: Add padding or additional styles as needed */
-  padding: 1em;
-}
-
-/* Since using percentages may not account for padding, you might also consider using 'flex-grow' */
-.sidebar {
-  flex-grow: 1;
-  background: #f5f5f5;
-  padding: 10px;
-}
-
-.nav-tab {
-  display: block;
-  padding: 10px 15px;
-  cursor: pointer;
-  color: #333;
-  text-decoration: none;
-}
-
-/* Specify hover effects for tabs */
-.nav-tab:hover {
-background: #e9e9e9; /* Slightly darker grey on hover */
-}
-
-/* Active tab styles */
-.nav-tab.active {
-background: #444444; /* Active tab with blue background */
-color: #fff;
-}
-
-/* Optional: Adding a border to the active tab for better visibility */
-.nav-tab.active::after {
-content: '';
-display: block;
-border-left: 2px solid #0056b3; /* Darker blue border */
-margin-top: 5px;
-}
-
-.wizard-form-wrapper {
-  flex-grow: 2;
-}
-
-/* Additional responsive styling if necessary */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar,
-  .wizard-form-wrapper {
-    flex-basis: auto; /* On small screens, each section takes full width */
-  }
-}
-
-
-/** validation **/
 /* Apply styles to invalid controls that have been interacted with (touched) */
 input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
 border-color: #dc3545; /* example: red border for invalid input */

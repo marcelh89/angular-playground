@@ -7,7 +7,7 @@ import {SidebarComponent} from './sidebar/sidebar.component'
 
 
 @Component({
-  selector: 'app-wizard-form',
+  selector: 'app-multistep-form',
   standalone: true,
   imports: [CommonModule,NgIf,StepComponent, SidebarComponent, ReactiveFormsModule],
   templateUrl: './multistep-form.component.html',
