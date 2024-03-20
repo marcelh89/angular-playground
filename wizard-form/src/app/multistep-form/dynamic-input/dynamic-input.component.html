@@ -12,6 +12,8 @@
                 [id]="field!.name"
                 [type]="field!.type"
                 [placeholder]="field!.placeholder"
+                (ngModelChange)="modelChange($event)"
+                (blur)="blur($event)"
             />
         }
         @case("number"){
@@ -20,6 +22,8 @@
                 [id]="field!.name"
                 [type]="field!.type"
                 [placeholder]="field!.placeholder"
+                (change)="modelChange($event)"
+                (blur)="blur($event)"
             />
         }
         @case("date"){
@@ -28,10 +32,12 @@
                 [id]="field!.name"
                 [type]="field!.type"
                 [placeholder]="field!.placeholder"
+                (change)="modelChange($event)"
+                (blur)="blur($event)"
             />
         }
         @case("select"){
-            <select [formControlName]="field.name" [id]="field!.name">
+            <select [formControlName]="field.name" [id]="field!.name" (change)="modelChange($event)" (blur)="blur($event)">
                 <option value="" disabled>{{ field!.placeholder }}</option>
                 <ng-container *ngFor="let option of field?.options">
                   <option [value]="option">{{ option }}</option>
@@ -45,11 +51,8 @@
     }
     
     <!-- Error message -->
-    <!--
     <div *ngIf="control?.invalid && (control?.dirty || control?.touched)">
-      <div>{{ getErrorMessage('error.required') }}</div>
+      <div>{{ appStore.getErrorMessage('error.required') }}</div>
     </div>
-    -->
     
-
   </ng-container>

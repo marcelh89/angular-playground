@@ -92,7 +92,7 @@ export const AppStore = signalStore(
 
         for(let formGroup of store.stepForms()){
           if(formGroup.controls[field.name])
-            return matchedControl;
+            return (formGroup.controls[field.name] as FormControl);
         }
 
         return matchedControl;
@@ -105,6 +105,10 @@ export const AppStore = signalStore(
               return true
 
         return false;
+      },
+
+      getErrorMessage(key: string): string {
+        return store.config().messages[key]
       },
 
       submitForm() {
