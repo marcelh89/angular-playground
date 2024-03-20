@@ -67,7 +67,6 @@ export const AppStore = signalStore(
 
     withMethods((store) => ({
 
-      // TODO implement with validation logic
       selectStep(step: Number){
         console.log("not implemented yet")
       },
@@ -83,21 +82,27 @@ export const AppStore = signalStore(
         }
       },
     
-      // Function to navigate to previous step
       goToPreviousStep() {
         patchState(store, (state) => ({ currentStepIndex: Math.max(0, store.currentStepIndex() - 1) }));
       },
 
-      isRequired(field: FieldConfig): boolean {
-
+      // get the fieldControl by a fieldConfig out of the list of fieldGroups (which contains the controls)
+      getFieldControl(field: FieldConfig): FormControl | undefined {
         let matchedControl: FormControl | undefined = undefined;
 
         for(let formGroup of store.stepForms()){
           if(formGroup.controls[field.name])
-            matchedControl = (formGroup.controls[field.name] as FormControl);
-            if(matchedControl?.hasValidator(Validators.required))
-              return true
+            return matchedControl;
         }
+
+        return matchedControl;
+      },
+
+      isRequired(field: FieldConfig): boolean {
+
+        let matchedControl: FormControl | undefined = this.getFieldControl(field);
+        if(matchedControl?.hasValidator(Validators.required))
+              return true
 
         return false;
       },

@@ -46,9 +46,10 @@
     
     <!-- Error message -->
     <!--
-    <div *ngIf="control.invalid && (control.dirty || control.touched)">
-      <div *ngIf="control.errors['required']">{{ getErrorMessage('error.required') }}</div>
-    </div>  
+    <div *ngIf="control?.invalid && (control?.dirty || control?.touched)">
+      <div>{{ getErrorMessage('error.required') }}</div>
+    </div>
     -->
+    
 
   </ng-container>
