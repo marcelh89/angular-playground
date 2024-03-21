@@ -1,9 +1,7 @@
 <div class="sidebar">
     <a *ngFor="let step of appStore.config().steps; let i = index"
         class="nav-tab"
-        [class.active]="appStore.currentStepIndex() === i"
-        (click)="appStore.selectStep(i)">
-        >
+        [class.active]="appStore.currentStepIndex() === i">
       {{ step.title }}
     </a>
 </div>

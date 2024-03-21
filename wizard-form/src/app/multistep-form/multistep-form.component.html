@@ -4,7 +4,7 @@
 
   <div class="multistep-form-wrapper">
       <form>
-  
+
         @if(appStore.confirmationStep()){
           <div *ngIf="appStore.confirmationStep">
             <h2>Confirmation</h2>
@@ -14,16 +14,16 @@
           <div class="form-step" *ngFor="let step of appStore.config().steps; let i = index">
             <app-step [isActive]="i === appStore.currentStepIndex()" />
           </div>
-      
+
           <!-- form controls -->
           <button type="button" (click)="appStore.goToPreviousStep()" *ngIf="appStore.currentStepIndex() > 0">Previous</button>
           <button type="button" (click)="appStore.goToNextStep()" *ngIf="appStore.currentStepIndex() < appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Next</button>
-          <button type="submit" (click)="submitForm()" *ngIf="appStore.currentStepIndex() === appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Submit</button>
-      
+          <button type="submit" (click)="appStore.submitForm()" *ngIf="appStore.currentStepIndex() === appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Submit</button>
+
         }
-       
+
       </form>
-   
+
   </div>
 
   <div class="right-offset"></div>

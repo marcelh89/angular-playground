@@ -1,12 +1,11 @@
 
-import { computed } from '@angular/core';
+import {computed, inject} from '@angular/core';
 import {signalStore, withComputed, withMethods, withState, patchState} from "@ngrx/signals"
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { FormConfig, FieldConfig } from './multistep-form.model';
 import formJson from './multistep-form.config';
-import { initValidators } from './multistep-form.utils';
-import { environment } from '../../environments/environment'; // Adjust the path as necessary
+import {initValidators, removeNull} from './multistep-form.utils';
+import {ApiService} from "./api.service"; // Adjust the path as necessary
 
 
 type AppState = {
@@ -17,17 +16,6 @@ type AppState = {
     confirmationStep: boolean,
     finalFormData: {} | undefined
 };
-
-
-function removeNull(obj: any) {
-  Object.keys(obj).forEach(key => {
-    if (obj[key] && typeof obj[key] === 'object') removeNull(obj[key]);
-    else if (obj[key] === null) delete obj[key];
-  });
-  return obj;
-}
-
-// <------ move in utils?!
 
 const fb = new FormBuilder()
 const initialState: AppState = {
@@ -56,9 +44,6 @@ const initialState: AppState = {
   fb
 };
 
-console.log("initialState", initialState)
-
-
 export const AppStore = signalStore(
     {providedIn: 'root'},
     withState(initialState),
@@ -68,7 +53,7 @@ export const AppStore = signalStore(
         formGroup: computed(() => stepForms()[currentStepIndex()]),
       })),
 
-    withMethods((store) => ({
+    withMethods((store, apiService = inject(ApiService)) => ({
 
       selectStep(step: number){
         console.log("not implemented yet")
@@ -113,7 +98,7 @@ export const AppStore = signalStore(
         return store.config().messages[key]
       },
 
-      submitForm(http: HttpClient) {
+      submitForm() {
 
         let finalFormData: any = {}
 
@@ -128,25 +113,7 @@ export const AppStore = signalStore(
 
         patchState(store, (state) => ({ confirmationStep: true, finalFormData}));
 
-        this.sendBackendRequest(http, finalFormData); // send data to the server
-
-      },
-
-      sendBackendRequest(http: HttpClient, finalFormData: any) {
-        // TODO get apiUrl from env vars
-        const apiUrl = `${environment.apiUrl}`
-
-        // Send the data to the server
-        http.post(apiUrl, finalFormData).subscribe({
-          next: (response) => {
-            console.log('Form data successfully submitted:', response);
-            // Handle successful response here
-          },
-          error: (error) => {
-            console.error('Error submitting form data:', error);
-            // Handle errors here, for example, show user feedback
-          }
-        });
+        apiService.sendBackendRequest(finalFormData); // send data to the server
 
       }
 

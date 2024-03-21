@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {AppStore} from './multistep-form.store'
 import {StepComponent} from './step/step.component'
 import {SidebarComponent} from './sidebar/sidebar.component'
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -15,11 +15,5 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 })
 export class MultistepFormComponent {
   appStore = inject(AppStore)
-
-  constructor(private http: HttpClient) {}
-
-  submitForm(){
-    this.appStore.submitForm(this.http)
-  }
 
 }
