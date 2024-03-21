@@ -16,11 +16,11 @@ export class ApiService {
     // Send the data to the server
     this.http.post(apiUrl, finalFormData).subscribe({
       next: (response) => {
-        console.log('Form data successfully submitted:', response);
+        // console.log('Form data successfully submitted:', response);
         // Handle successful response here
       },
       error: (error) => {
-        console.error('Error submitting form data:', error);
+        // console.error('Error submitting form data:', error);
         // Handle errors here, for example, show user feedback
       }
     });

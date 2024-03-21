@@ -18,20 +18,6 @@ export class DynamicInputComponent {
 
   ngOnInit(): void {
     this.control = (this.appStore.getFieldControl(this.field) as FormControl)
-    console.log("DynamicInputComponent-ngOnInit", this.control)
-  } 
-
-  blur(event: Event) {
-    console.log("DynamicInputComponent-blur", event, this.control);
-  }
-
-  modelChange(event: Event){
-    console.log("DynamicInputComponent-modelChange", event, this.control);
-  }
-
-  // TODO use store here and get the error message from the config/wizard-form.config.ts
-  getErrorMessage(key: string){
-    return "error"
   }
 
 }

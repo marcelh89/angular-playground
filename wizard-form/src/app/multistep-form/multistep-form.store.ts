@@ -55,10 +55,6 @@ export const AppStore = signalStore(
 
     withMethods((store, apiService = inject(ApiService)) => ({
 
-      selectStep(step: number){
-        console.log("not implemented yet")
-      },
-
       isNextStepAccessible() {
         return store.stepForms()[store.currentStepIndex()].valid
       },
