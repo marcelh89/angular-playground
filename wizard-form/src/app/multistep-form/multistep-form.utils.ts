@@ -17,5 +17,5 @@ export function initValidators(field: FieldConfig) {
   }
 
   return validators;
-  
+
 }
