@@ -16,9 +16,9 @@
           </div>
 
           <!-- form controls -->
-          <button type="button" (click)="appStore.goToPreviousStep()" *ngIf="appStore.currentStepIndex() > 0">Previous</button>
-          <button type="button" (click)="appStore.goToNextStep()" *ngIf="appStore.currentStepIndex() < appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Next</button>
-          <button type="submit" (click)="appStore.submitForm()" *ngIf="appStore.currentStepIndex() === appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">Submit</button>
+          <button type="button" (click)="appStore.goToPreviousStep()" *ngIf="appStore.currentStepIndex() > 0">{{ appStore._('button.previous') }}</button>
+          <button type="button" (click)="appStore.goToNextStep()" *ngIf="appStore.currentStepIndex() < appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">{{appStore._('button.next')}}</button>
+          <button type="submit" (click)="appStore.submitForm()" *ngIf="appStore.currentStepIndex() === appStore.stepForms().length - 1" [disabled]="!appStore.isNextStepAccessible()">{{appStore._('button.submit')}}</button>
 
         }
 

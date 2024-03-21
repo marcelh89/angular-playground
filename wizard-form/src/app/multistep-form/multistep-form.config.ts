@@ -1,6 +1,9 @@
 export default {
   messages: {
     'error.required': 'Bitte füllen sie das erforderliche Feld aus',
+    'button.previous': 'Zurück',
+    'button.next': 'OK',
+    'button.submit': 'Erstellen'
   },
   steps: [
     {
@@ -89,45 +92,15 @@ export default {
               fields: [
                 {
                   type: 'text',
-                  name: 'firstName',
-                  label: 'First Name',
-                  placeholder: 'Enter your first name',
+                  name: 'street',
+                  label: 'Straße',
+                  placeholder: '',
                   validators: [],
                 },
                 {
                   type: 'text',
-                  name: 'lastname',
-                  label: 'Last Name',
-                  placeholder: 'Enter your first name',
-                  validators: [],
-                },
-              ],
-            },
-            {
-              id: 2,
-              fields: [
-                {
-                  type: 'number',
-                  name: 'age',
-                  label: 'Age',
-                  placeholder: 'Enter your age',
-                  validators: [],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          title: 'Tätigkeit',
-          columns: [
-            {
-              id: 1,
-              fields: [
-                {
-                  type: 'select',
-                  options: ['Manager', 'Berater'],
-                  name: 'job',
-                  label: 'Beruf',
+                  name: 'zipcode',
+                  label: 'Postleitzahl',
                   placeholder: '',
                   validators: [],
                 },
@@ -137,10 +110,16 @@ export default {
               id: 2,
               fields: [
                 {
-                  type: 'select',
-                  options: ['Versicherungen', 'IT-Services'],
-                  name: 'business',
-                  label: 'Branche',
+                  type: 'text',
+                  name: 'housenumber',
+                  label: 'Hausnummer',
+                  placeholder: '',
+                  validators: [],
+                },
+                {
+                  type: 'text',
+                  name: 'location',
+                  label: 'Ort',
                   placeholder: '',
                   validators: [],
                 },
@@ -149,8 +128,7 @@ export default {
           ],
         },
       ],
-      'button.abort': 'Abbrechen',
-      'button.next': 'OK',
+
     },
     {
       id: 1,
@@ -174,8 +152,6 @@ export default {
           ],
         },
       ],
-      'button.abort': 'Abbrechen',
-      'button.next': 'OK',
     },
   ],
 };

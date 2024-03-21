@@ -111,8 +111,12 @@ export const AppStore = signalStore(
 
         apiService.sendBackendRequest(finalFormData); // send data to the server
 
+      },
+      _(key: string): string {
+        //return store.config.messages()[key] ? (store.config.messages()[key] as string) :  key;
+        return store.config.messages()[key] ?? key;
       }
 
-    }))
+    })),
 
 )
