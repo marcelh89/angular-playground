@@ -1,0 +1,18 @@
+{
+  "partner": [
+    {
+      "id": "1",
+      "salutation": "Mr",
+      "name": "M",
+      "prename": "Marcel",
+      "birthdate": "2024-03-21"
+    },
+    {
+      "id": "dc92",
+      "salutation": "Mr",
+      "name": "M",
+      "prename": "M",
+      "birthdate": "2024-03-15"
+    }
+  ]
+}

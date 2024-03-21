@@ -24,4 +24,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Run Mock Server
+`npx json-server server/db.json`
+
+see http://localhost:3000/partner (in browser)
+data is stored inside json file in server/db.json
+https://github.com/typicode/json-server provides full CRUD API
