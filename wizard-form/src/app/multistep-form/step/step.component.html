@@ -8,11 +8,11 @@
         <h4>{{row.title}}</h4>
 
         <div class="row" >
-            
+
             <div class="column" *ngFor="let col of row?.columns">
 
                 <app-dynamic-input *ngFor="let field of col.fields" [field]="field"></app-dynamic-input>
-        
+
             </div>
 
         </div>
@@ -20,5 +20,5 @@
         <hr *ngIf="rowIndex < appStore.currentStep().rows.length - 1" />
 
     </ng-container>
-   
+
   </div>

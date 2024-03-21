@@ -33,9 +33,9 @@ const initialState: AppState = {
   currentStepIndex: 0,
   confirmationStep: false,
   stepForms: formJson.steps.map(step => {
-    
+
     const formGroup = fb.group({})
-    
+
     // collect all form Controls and apply validators
     step.rows.forEach((row) => {
       row.columns.forEach(col => {
@@ -44,7 +44,7 @@ const initialState: AppState = {
           control.addValidators(initValidators(field))
           formGroup.addControl(field.name, control);
         })
-       
+
       })
     })
 
@@ -59,7 +59,7 @@ console.log("initialState", initialState)
 export const AppStore = signalStore(
     {providedIn: 'root'},
     withState(initialState),
-    
+
     withComputed(({ config, currentStepIndex, stepForms, confirmationStep }) => ({
         currentStep: computed(() => config().steps[currentStepIndex()]),
         formGroup: computed(() => stepForms()[currentStepIndex()]),
@@ -67,10 +67,10 @@ export const AppStore = signalStore(
 
     withMethods((store) => ({
 
-      selectStep(step: Number){
+      selectStep(step: number){
         console.log("not implemented yet")
       },
-      
+
       isNextStepAccessible() {
         return store.stepForms()[store.currentStepIndex()].valid
       },
@@ -81,16 +81,16 @@ export const AppStore = signalStore(
           patchState(store, (state) => ({ currentStepIndex: store.currentStepIndex()+1 }));
         }
       },
-    
+
       goToPreviousStep() {
         patchState(store, (state) => ({ currentStepIndex: Math.max(0, store.currentStepIndex() - 1) }));
       },
 
       // get the fieldControl by a fieldConfig out of the list of fieldGroups (which contains the controls)
       getFieldControl(field: FieldConfig): FormControl | undefined {
-        let matchedControl: FormControl | undefined = undefined;
+        const matchedControl: FormControl | undefined = undefined;
 
-        for(let formGroup of store.stepForms()){
+        for(const formGroup of store.stepForms()){
           if(formGroup.controls[field.name])
             return (formGroup.controls[field.name] as FormControl);
         }
@@ -100,11 +100,10 @@ export const AppStore = signalStore(
 
       isRequired(field: FieldConfig): boolean {
 
-        let matchedControl: FormControl | undefined = this.getFieldControl(field);
-        if(matchedControl?.hasValidator(Validators.required))
-              return true
+        const matchedControl: FormControl | undefined = this.getFieldControl(field);
+        return !!matchedControl?.hasValidator(Validators.required);
 
-        return false;
+
       },
 
       getErrorMessage(key: string): string {
@@ -118,19 +117,19 @@ export const AppStore = signalStore(
 
         store.stepForms().forEach(step => {
 
-          for (let controlKey of Object.keys(step.controls)){
+          for (const controlKey of Object.keys(step.controls)){
             finalFormData[controlKey] = step.controls[controlKey].value
           }
-          
+
         })
 
         // filter finalFormData by removing null values
         finalFormData = removeNull(finalFormData)
-        
+
         patchState(store, (state) => ({ confirmationStep: true, finalFormData}));
 
       }
 
     }))
-      
+
 )
