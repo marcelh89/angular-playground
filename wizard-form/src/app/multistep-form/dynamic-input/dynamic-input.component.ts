@@ -28,12 +28,4 @@ export class DynamicInputComponent {
     return ["text", "number"].includes(type)
   }
 
-  blur(event: Event){
-    console.log("blur", event, this.field, this.control)
-    console.log("blur",this.control)
-    console.log("blur-control.invalid",this.control.invalid)
-    console.log("blur-control.dirty",this.control.dirty)
-    console.log("blur-control.invalid",this.control.touched)
-  }
-
 }

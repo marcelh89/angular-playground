@@ -12,7 +12,7 @@
   <!-- date -->
   <mat-form-field *ngIf="field.type === 'date'" class="full-width fixed-height-input">
     <mat-label>{{ field.label }}</mat-label>
-    <input matInput [formControlName]="field.name" [matDatepicker]="picker" (blur)="blur($event)">
+    <input matInput [formControlName]="field.name" [matDatepicker]="picker">
     <mat-error *ngIf="control?.invalid && (control?.dirty || control?.touched)">
       {{ appStore.getErrorMessage('error.required') }}
     </mat-error>
@@ -28,8 +28,8 @@
     <mat-label>{{ field.label }}</mat-label>
     <select matNativeControl [formControlName]="field.name" [id]="field!.name">
       <ng-container *ngFor="let option of field?.options">-->
-        <option [value]="option">{{ option }}</option>-->
-       </ng-container>-->
+        <option [value]="option">{{ option }}</option>
+      </ng-container>
     </select>
   </mat-form-field>
 
