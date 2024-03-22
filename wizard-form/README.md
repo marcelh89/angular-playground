@@ -15,6 +15,7 @@ Features:
 - Json based configuration
 - json-server (CRUD testing)
 - OpenAPI (test)
+- https://material.angular.io
 
 
 ## Further help
