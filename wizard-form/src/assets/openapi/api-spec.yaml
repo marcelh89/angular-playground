@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: A sample API to illustrate OpenAPI specifications
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /partner:
+    get:
+      summary: List all partners
+      operationId: listPartners
+      responses:
+        '200':
+          description: An array of partners
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Partner'
+
+components:
+  schemas:
+    Partner:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        salutation:
+          type: string
+        name:
+          type: string
+        prename:
+          type: string
+        birthdate:
+          type: string

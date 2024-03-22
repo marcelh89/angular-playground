@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { FormConfig, FieldConfig } from './multistep-form.model';
 import formJson from './multistep-form.config';
 import {initValidators, removeNull} from './multistep-form.utils';
-import {ApiService} from "./api.service"; // Adjust the path as necessary
+import {MultistepFormService} from "./multistep-form.service"; // Adjust the path as necessary
 
 
 type AppState = {
@@ -53,7 +53,7 @@ export const AppStore = signalStore(
         formGroup: computed(() => stepForms()[currentStepIndex()]),
       })),
 
-    withMethods((store, apiService = inject(ApiService)) => ({
+    withMethods((store, apiService = inject(MultistepFormService)) => ({
 
       isNextStepAccessible() {
         return store.stepForms()[store.currentStepIndex()].valid
