@@ -1,52 +1,36 @@
 <ng-container [formGroup]="appStore.formGroup()">
-    <label [attr.for]="field.name">{{ field.label }}
-        <span *ngIf="appStore.isRequired(field)" class="required-asterisk">*</span>
-    </label>
 
+  <!-- text, number -->
+  <mat-form-field *ngIf="isSimpleInputType(field.type)" class="full-width fixed-height-input" appearance="fill">
+    <mat-label>{{ field.label }}</mat-label>
+    <input matInput [formControlName]="field.name" [placeholder]="field.placeholder">
+    <mat-error *ngIf="control?.invalid && (control?.dirty || control?.touched)">
+      {{ appStore.getErrorMessage('error.required') }}
+    </mat-error>
+  </mat-form-field>
 
-    @switch (field.type) {
+  <!-- date -->
+  <mat-form-field *ngIf="field.type === 'date'" class="full-width fixed-height-input">
+    <mat-label>{{ field.label }}</mat-label>
+    <input matInput [formControlName]="field.name" [matDatepicker]="picker" (blur)="blur($event)">
+    <mat-error *ngIf="control?.invalid && (control?.dirty || control?.touched)">
+      {{ appStore.getErrorMessage('error.required') }}
+    </mat-error>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-        @case("text"){
-            <input
-                [formControlName]="field!.name"
-                [id]="field!.name"
-                [type]="field!.type"
-                [placeholder]="field!.placeholder"
-            />
-        }
-        @case("number"){
-            <input
-                [formControlName]="field.name"
-                [id]="field!.name"
-                [type]="field!.type"
-                [placeholder]="field!.placeholder"
-            />
-        }
-        @case("date"){
-            <input
-                [formControlName]="field.name"
-                [id]="field!.name"
-                [type]="field!.type"
-                [placeholder]="field!.placeholder"
-            />
-        }
-        @case("select"){
-            <select [formControlName]="field.name" [id]="field!.name">
-                <option value="" disabled>{{ field!.placeholder }}</option>
-                <ng-container *ngFor="let option of field?.options">
-                  <option [value]="option">{{ option }}</option>
-                </ng-container>
-              </select>
-        }
-        @default {
-            <div>default</div>
-        }
+  <!-- select -->
+  <mat-form-field *ngIf="field.type === 'select'" class="full-width fixed-height-input">
+    <mat-label>{{ field.label }}</mat-label>
+    <select matNativeControl [formControlName]="field.name" [id]="field!.name">
+      <ng-container *ngFor="let option of field?.options">-->
+        <option [value]="option">{{ option }}</option>-->
+       </ng-container>-->
+    </select>
+  </mat-form-field>
 
-    }
-
-    <!-- Error message -->
-    <div *ngIf="control?.invalid && (control?.dirty || control?.touched)">
-      <div>{{ appStore.getErrorMessage('error.required') }}</div>
-    </div>
-
-  </ng-container>
+</ng-container>

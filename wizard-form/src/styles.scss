@@ -56,6 +56,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .form-step {
   margin-bottom: 2em;
+
+  h1,h2,h3,h4 {
+    margin-left: 10px
+  }
 }
 
 
@@ -142,6 +146,15 @@ button:disabled {
 label {
   margin-bottom: 0.5em;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.fixed-height-input {
+  height: 80px;
+}
+
 
 
 /********************************

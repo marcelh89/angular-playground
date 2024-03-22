@@ -4,7 +4,9 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, provideNativeDateAdapter} from "@angular/material/core";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideAnimationsAsync()]
+  providers: [provideRouter(routes), provideHttpClient(), provideAnimationsAsync(), provideNativeDateAdapter()]
 };
