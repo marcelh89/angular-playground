@@ -1,0 +1,13 @@
+<div>
+  <input type="text" [(ngModel)]="username" placeholder="Username" />
+  <input type="password" [(ngModel)]="password" placeholder="Password" />
+
+  @if (isLoggedIn()) {
+    <p> Logged out </p>
+    <button (click)="onLogout()">Logout</button>
+  } @else {
+    <p> You need to log in </p>
+    <button (click)="onLogin()">Login</button>
+  }
+
+</div>
